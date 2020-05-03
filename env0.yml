@@ -1,0 +1,15 @@
+version: 1
+
+deploy:
+    steps:
+        setupVariables:
+          after:
+            - aws --version
+        terraformApply:
+          after:
+            - echo "Successfully created null resource"
+destroy:
+    onSuccess:
+      - echo "Destroy completed Successfully"
+    onFailure:
+      - echo "Failed to destroy resources"
